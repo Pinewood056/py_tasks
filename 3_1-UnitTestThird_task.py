@@ -1,30 +1,21 @@
-import random
-# Generate 1000 random numbers between -1000 and 1000
-randomList = random.sample(range(-1000, 1000), 1000)
-# print the list
-print('The original list:', randomList)
+from third_task import RandomList
+import unittest
 
 
-def length_check():
-    if len(randomList) != 1000:
-        return 'The list isn`t equal 1000. FAIL.'
-    else:
-        return "The list is equal 1000. OK."
+class RandomListUnit(unittest.TestCase):
+    def SetUpRandomList(self):
+        self.RandomList = RandomList()
+
+    def test_LenCheck(self):
+        self.assertEqual(RandomList().length_check(), True)
+
+    def test_length(self):
+        self.assertEqual(RandomList.length, 2)
+
+    def test_A_not_B(self):
+        self.assertIsNot(RandomList.final[0], RandomList.final[1])
 
 
-print(length_check())
-# Sort with Reverse
-randomList.sort(reverse=True)
-print('The sorted list:', randomList)
-print(length_check())
-
-
-def final_check():
-    if len(randomList[:2]) != 2:
-        return "There is not 2 elements. FAIL."
-    else:
-        return "There is only 2 elements returned. OK."
-
-
-print('The first values from the sorted list:', randomList[:2])
-print(final_check())
+if __name__ == "__main__":
+    unittest.main()
+    
