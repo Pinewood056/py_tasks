@@ -1,11 +1,17 @@
-n = 0
-# start position for nums
-for num in range(1000000):
-    strNum = str(num)
-# move nums to a string
-    strNum = '0'*(6-len(strNum)) + strNum
-# make strNum 6-digits. If need more/less than 6 nums in ticket - change "int`s" bellow
-    if int(strNum[0]) + int(strNum[1]) + int(strNum[2]) == int(strNum[3]) + int(strNum[4]) + int(strNum[5]):
-        n = n+1
+result = int(0)
 
-print(n)
+for i in range(1, 1000000, 1):
+    numeralFirst = int(i % 10)
+    numeralSecond = int((i / 10) % 10)
+    numeralThird = int((i / 100) % 10)
+    numeralFourth = int((i / 1000) % 10)
+    numeralFifth = int((i / 10000) % 10)
+    numeralSixth = int((i / 100000) % 10)
+
+    leftHalf = numeralSixth + numeralFifth + numeralFourth
+    rightHalf = numeralThird + numeralSecond + numeralFirst
+
+    if rightHalf == leftHalf:
+        result += 1
+
+print(result)
